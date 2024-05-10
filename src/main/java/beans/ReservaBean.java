@@ -37,12 +37,19 @@ public class ReservaBean implements Serializable {
     private Reserva reservaActual;
     private List<Reserva> reservas;
     private ScheduleModel scheduleModel;
+    private List<String> valores;
+    private String[] valoresSeleccionados;
 
     @PostConstruct
     public void init() {
         reservaActual = new Reserva();
         reservas = reservaDAO.obtenerTodas();
         scheduleModel = new DefaultScheduleModel();
+
+        valores = new ArrayList<>();
+        valores.add("Usar pizarra");
+        valores.add("Usar proyector");
+        valores.add("Usar computadora");
 
         // Populate scheduleModel with events from reservas
         for (Reserva reserva : reservas) {
